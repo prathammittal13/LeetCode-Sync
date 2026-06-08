@@ -1,6 +1,6 @@
 class Solution {
 public:
-int max_element(vector<vector<int>>& mat, int n, int m, int col){
+int max_element(vector<vector<int>>& mat, int n, int col){
     int maxvalue =-1;
     int index= -1;
     for(int i=0; i<n; i++){
@@ -16,7 +16,7 @@ int max_element(vector<vector<int>>& mat, int n, int m, int col){
         int low= 0, high = m-1;
         while(low<= high){
             int mid = (low+high)/2;
-            int row = max_element(mat, n, m, mid);
+            int row = max_element(mat, n, mid);
             int left= mid-1 >=0 ? mat[row][mid -1] : -1;
             int right= mid+1< m ? mat[row][mid+1] : -1;
             if(mat[row][mid]> left && mat[row][mid]> right)
