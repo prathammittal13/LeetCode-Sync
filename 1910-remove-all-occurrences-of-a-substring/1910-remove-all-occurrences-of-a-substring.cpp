@@ -2,7 +2,7 @@ class Solution {
 public:
     string removeOccurrences(string s, string part) {
         // humko bass itna yaad rakhna  hai ki 
-        while (s.find(part)<s.length()){
+        while (s.find(part)<s.size()){
             s.erase(s.find(part), part.length());
     }
         return s;
