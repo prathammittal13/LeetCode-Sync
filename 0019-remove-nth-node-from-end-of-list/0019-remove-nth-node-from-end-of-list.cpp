@@ -11,29 +11,22 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        // Create a dummy node before head to handle edge cases
-        ListNode* dummy = new ListNode(0, head);
-
-        // Initialize slow and fast pointers at dummy
-        ListNode* slow = dummy;
-        ListNode* fast = dummy;
-
-        // Move fast pointer N+1 steps ahead to create a gap
-        for (int i = 0; i <= n; i++) {
+        ListNode* fast = head;
+        ListNode* slow = head;
+        
+        for (int i = 0; i < n; i++) {
             fast = fast->next;
         }
-
-        // Move both pointers until fast reaches the end
-        while (fast != NULL) {
+        if(fast == NULL){return head->next;}
+        while (fast->next != NULL) {
             slow = slow->next;
             fast = fast->next;
         }
 
-        // Slow is now at node before target → delete target node
+        ListNode* delNode= slow->next;
         slow->next = slow->next->next;
-
-        // Return updated head
-        return dummy->next;
+        delete(delNode);
+        return head;
 
     }
 };
