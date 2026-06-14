@@ -10,36 +10,46 @@
  */
 class Solution {
 public:
-
 ListNode* getKthNode(ListNode* curr, int k) {
-        while (curr && k > 0) {
-            curr = curr->next;
-            k--;
+    k--;
+    while(curr != NULL && k > 0){
+        curr = curr->next;
+        k--;
+    }
+    return curr;
+}
+    ListNode* reverseList(ListNode* head) {
+        ListNode* temp= head;
+        ListNode* prev= NULL;
+        while(temp!= NULL){
+            ListNode* front= temp->next;
+            temp->next= prev;
+            prev= temp;
+            temp = front;
         }
-        return curr;
+        return prev;
     }
     ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode* dummy = new ListNode(0);
-        dummy->next = head;
-        ListNode* groupPrev = dummy;
-
-        while (true) {
-            ListNode* kth = getKthNode(groupPrev, k);
-            if (!kth) break;
-            ListNode* groupNext = kth->next;
-            ListNode* prev = groupNext;
-            ListNode* curr = groupPrev->next;
-            for (int i = 0; i < k; i++) {
-                ListNode* temp = curr->next;
-                curr->next = prev;
-                prev = curr;
-                curr = temp;
+        ListNode* temp= head;
+        ListNode* prevNode= NULL;
+        while(temp!= NULL){
+           ListNode* Kthnode= getKthNode(temp, k);
+            if(Kthnode == NULL){
+                if(prevNode) prevNode->next= temp;
+                break;
             }
-            ListNode* temp = groupPrev->next;
-            groupPrev->next = kth;
-            groupPrev = temp;
-        }
-        return dummy->next;
-    }
-    
+            ListNode* nextNode= Kthnode->next;
+            Kthnode->next= NULL;
+            reverseList(temp);
+            if(temp==head){
+                head=Kthnode;
+            }
+                else{
+                prevNode->next=Kthnode;
+                }
+                prevNode= temp;
+                temp=nextNode;
+            }
+            return head;
+        } 
 };
