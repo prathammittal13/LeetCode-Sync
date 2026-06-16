@@ -9,7 +9,11 @@ public:
                 st.pop();
             }
             if(i<n){
-                nge[i]= st.empty() ? -1 : st.top();
+               if (st.empty()) {
+    nge[i] = -1;
+} else {
+    nge[i] = st.top();
+}
             }
             st.push(nums[i%n]);
         }
