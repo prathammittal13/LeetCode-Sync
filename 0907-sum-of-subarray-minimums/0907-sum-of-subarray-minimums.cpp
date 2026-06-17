@@ -32,7 +32,7 @@ public:
         vector<int> psee = findPSEE(arr);
         int n = arr.size();
         int mod = 1e9 + 7;
-        int sum;
+        int sum=0;
         for(int i=0; i < n; i++) {
             int left = i - psee[i];
             int right = nse[i] - i;
