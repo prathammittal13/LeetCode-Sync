@@ -11,7 +11,9 @@ public:
         ind= ind+1;
         while(!st.empty() && st.top().first<= price)
         st.pop();
-        int ans= ind- (st.empty() ? -1: st.top().second);
+        int ans;
+        if (st.empty()) ans = ind + 1;
+        else ans = ind - st.top().second;
         st.push({price, ind});
         return ans;
     }
