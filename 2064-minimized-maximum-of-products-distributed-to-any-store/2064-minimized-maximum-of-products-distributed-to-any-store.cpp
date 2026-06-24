@@ -3,7 +3,7 @@ public:
     int storesRequired(vector<int>& quantities, int maxProducts) {
         int stores = 0;
         for (int q : quantities) {
-            stores += (q + maxProducts - 1) / maxProducts;
+            stores += ceil((double)q / maxProducts);
         }
         return stores;
     }
