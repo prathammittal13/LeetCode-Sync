@@ -11,7 +11,9 @@
  */
 class BSTIterator {
     stack<TreeNode*> myStack;
-    bool reverse;
+    // REVERSE IS IF TRUE THSI MEANS BEFORE FUNCTION IS CALLED
+    // REVERSE IS IF FALSE THSI MEANS NEXT FUNCTION IS CALLED
+    bool reverse= true;
 public:
     BSTIterator(TreeNode* root, bool isReverse)  {
         reverse = isReverse;
@@ -33,7 +35,7 @@ private:
     void pushAll(TreeNode* node) {
         while (node != NULL) {
             myStack.push(node);
-            if (reverse) node = node->right;
+            if (reverse== true) node = node->right;
             else node = node->left;
         }
     }
@@ -43,7 +45,9 @@ class Solution {
 public:
     bool findTarget(TreeNode* root, int k) {
         if (!root) return false;
+        // left
         BSTIterator l(root, false);
+        //for before
         BSTIterator r(root, true);
         int i = l.next();
         int j = r.next();
